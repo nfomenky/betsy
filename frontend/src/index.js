@@ -5,23 +5,25 @@ import { Provider } from 'react-redux';
 import configureStore from './store';
 import './index.css';
 import App from './App';
+import { restoreCSRF, csrfFetch } from './store/csrf';
 
 const store = configureStore();
 
 if (process.env.NODE_ENV !== 'production') {
-  window.store = store;
+  restoreCSRF();
+  window.csrfFetch = csrfFetch;
+	window.store = store;
 }
 
 const Root = () => {
-  return (
-    <Provider store={store}>
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
-    </Provider>
-  )
-}
-
+	return (
+		<Provider store={store}>
+			<BrowserRouter>
+				<App />
+			</BrowserRouter>
+		</Provider>
+	);
+};
 
 ReactDOM.render(
 	<React.StrictMode>
