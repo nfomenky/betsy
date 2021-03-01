@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const sessionRouter = require('./session');
 const usersRouter = require('./users');
+const productsRouter = require('./products');
 const asynHandler = require('express-async-handler');
 const { User } = require('../../db/models');
 const {
@@ -11,6 +12,7 @@ const {
 
 router.use('/session', sessionRouter);
 router.use('/users', usersRouter);
+router.use('/products', productsRouter);
 
 //--------------TESTING USER AUTHENTICATION -----------------
 // router.get(
